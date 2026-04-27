@@ -1,11 +1,16 @@
+//app/page
 'use client';
 
 export default function Page() {
 
+  // function to handle form submission
   const handleSubmit = (event) => {
+    // prevent page reload
     event.preventDefault();
-
+    
+    //get form element
     const form = event.currentTarget;
+    // get form data
     const data = new FormData(form);
 
     const email = data.get('email');
@@ -13,18 +18,23 @@ export default function Page() {
     const dob = data.get('dob');
     const acctype = data.get('acctype');
 
+    // validation
     if (email == '' || pass == '' || dob == '') {
       alert("Please complete all fields");
       return;
     }
-
+    
+     // call register API
     fetch("/api/register?email=" + email 
       + "&pass=" + pass 
       + "&dob=" + dob 
       + "&acctype=" + acctype)
       .then((res) => res.json())
       .then(() => {
+       
+        // show confirmation of registation done
         alert("User registered");
+        // reset form fields
         form.reset();
       });
   };
@@ -32,7 +42,7 @@ export default function Page() {
   return (
     <div style={{ textAlign: "center", marginTop: "60px" }}>
 
-      {/* Título */}
+      {/* Title */}
       <h1>UNIQUE ANTIQUES</h1>
 
       {/* LOGO */}
@@ -51,10 +61,10 @@ export default function Page() {
         />
       </div>
 
-      {/* Subtítulo */}
+      {/* Subtitle */}
       <h2>Create A New Account</h2>
 
-      {/* Formulario */}
+      {/* Form */}
       <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
 
         <input name="email" placeholder="Email" />
@@ -66,6 +76,7 @@ export default function Page() {
         <input name="dob" placeholder="Date of Birth" />
         <br />
 
+         {/* to select the rol, customer ot manager */}
         <select name="acctype">
           <option value="">Role</option>
           <option value="customer">Customer</option>
@@ -78,7 +89,7 @@ export default function Page() {
 
       </form>
 
-      {/* BOTÓN LOGIN */}
+      {/* Button login */}
       <div style={{ marginTop: "20px" }}>
         <button onClick={() => window.location.href = "/login"}>
           Login

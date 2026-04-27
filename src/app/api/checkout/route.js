@@ -11,7 +11,7 @@ export async function GET(req) {
   // import MongoDB
   const { MongoClient } = require('mongodb');
 
-  // MongoDB connection URL
+  // MongoDB connection URL, original link saved in .env
   
   const url = process.env.MONGODB_URI;
   const client = new MongoClient(url);

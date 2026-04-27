@@ -1,4 +1,6 @@
+//app/dashboard
 'use client';
+// import React and Material UI componets
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -12,10 +14,11 @@ import Header from '../../components/header';
 
 export default function Page() {
 
-  // Function for putting items into the shopping cart
+  // Function to add items into the shopping cart
   function putInCart(pname, price) {
   const username = localStorage.getItem("email");
 
+  // send product details to the cart API
   fetch(
     "/api/putInCart?pname=" + pname +
     "&price=" + price +
@@ -28,17 +31,18 @@ export default function Page() {
 
   // state for weather
   const [weather, setWeatherData] = useState(0);
-
+  
+   // run when page loads
   useEffect(() => {
 
-    // Get products
+    // Get products from DB
     fetch('/api/getProducts')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
       });
 
-    // Get weather
+    // Get weather from APi
     fetch('/api/getWeather')
       .then((res) => res.json())
       .then((weather) => {
@@ -47,9 +51,11 @@ export default function Page() {
 
   }, []);
 
+  // show loading messages while data is loading
   if (!data) return <p>Loading</p>;
   if (!weather) return <p>No weather</p>;
 
+    // create Material UI theme
   const theme = createTheme({
     palette: {
       secondary: {
@@ -73,6 +79,7 @@ export default function Page() {
 
         <div style={{ fontSize: '40px' }}>List Of Products</div>
 
+       {/* display products */}
         <div>
           {
             data.map((item, i) => (
@@ -81,7 +88,8 @@ export default function Page() {
                 <br />
                 {item.pname} - {"\u20AC"}{item.price}
                 <br />
-
+                
+                {/* button to add product to cart */}
                 <Button
                   onClick={() => putInCart(item.pname,item.price)}
                   variant="outlined"

@@ -1,4 +1,6 @@
+//app/managerview 
 'use client';
+// import React hooks
 import { useState, useEffect } from 'react';
 
 // Import header
@@ -6,8 +8,10 @@ import Header from '../../components/managerheader';
 
 export default function Page() {
 
+  // state to store manager data
   const [data, setData] = useState(null);
 
+  // run when page loads
   useEffect(() => {
 
     const acctype = localStorage.getItem("acctype");
@@ -28,12 +32,14 @@ export default function Page() {
           window.location.href = "/login";
           return;
         }
-
+        
+        // store manager data
         setData(data);
       });
 
   }, []);
-
+  
+  //show wile loading
   if (!data) return <p>Loading</p>;
 
   return (
@@ -45,8 +51,10 @@ export default function Page() {
       <h1>Manager View</h1>
 
       <h2>Total Orders: {data.totalOrders}</h2>
+      {/* display total orders */}
       <h2>Total Cost: {"\u20AC"}{data.totalCost}</h2>
 
+      {/* display total cost using euro symbol */}
       <h3>Orders</h3>
 
       {

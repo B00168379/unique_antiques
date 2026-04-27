@@ -1,4 +1,6 @@
+// app/cart
 'use client';
+// React imported and UI components
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -11,27 +13,35 @@ import Header from '../../components/header';
 
 export default function Page() {
 
+  // state to store cart data
   const [data, setData] = useState(null);
 
+  // run when page loads
   useEffect(() => {
+    //get user logged from localStorage
     const username = localStorage.getItem("email");
 
+    //fetch cart items for the user
     fetch('/api/getCart?username=' + username)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
       });
   }, []);
-
+ 
+  /*need review to see why is not working*/
+  // function to remove item from cart 
   function removeItem(id) {
     fetch("/api/removeFromCart?id=" + id)
       .then(() => {
+        // update when removing item from state
         setData(data.filter((item) => item._id !== id));
       });
   }
 
   if (!data) return <p>Loading</p>;
 
+  // create theme from material UI
   const theme = createTheme({
     palette: {
       secondary: {
@@ -46,9 +56,10 @@ export default function Page() {
       <Header />
 
       <Container component="main" maxWidth="xs">
-
+         
         <div style={{ fontSize: '40px' }}> Shopping Cart</div>
-
+ 
+        {/* display cart items */}
         <div>
           {
             data.map((item, i) => (
@@ -61,7 +72,7 @@ export default function Page() {
                 <br />
                 User: {item.username}
                 <br />
-
+                 {/* remove button */}
                 <Button 
                   onClick={() => removeItem(item._id)} 
                   variant="outlined"
@@ -74,6 +85,7 @@ export default function Page() {
           }
         </div>
 
+        {/* send to checkout page */}
         <Button 
           href="/checkout"
           variant="contained"

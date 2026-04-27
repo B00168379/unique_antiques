@@ -1,23 +1,30 @@
+//app/login
 'use client';
+// import router to redirect users after login
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
-
+   
+ // create router object 
   const router = useRouter();
 
+  // function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
+     // get form data
     const data = new FormData(event.currentTarget);
 
     const email = data.get('email');
     const pass = data.get('pass');
 
+       // validation
     if (email == '' || pass == '') {
       alert("Please enter both email and password");
       return;
     }
 
+       // call login API
     fetch("/api/login?email=" + email + "&pass=" + pass)
       .then((res) => res.json())
       .then((data) => {
@@ -27,6 +34,7 @@ export default function Page() {
           localStorage.setItem("email", email);
           localStorage.setItem("acctype", data.acctype);
 
+          // redirect based on account type, manager access.
           if (data.acctype == "manager") {
             router.push("/managerview");
           } else {
@@ -43,7 +51,7 @@ export default function Page() {
   return (
     <div style={{ textAlign: "center", marginTop: "60px" }}>
 
-      {/* Título */}
+      {/* Title */}
       <h1>UNIQUE ANTIQUES</h1>
 
       {/* LOGO */}
@@ -62,10 +70,10 @@ export default function Page() {
         />
       </div>
 
-      {/* Subtítulo */}
+      {/* Subtitle */}
       <h2>User Login</h2>
 
-      {/* Formulario */}
+      {/* Form */}
       <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
 
         <input name="email" placeholder="Email" />
@@ -80,7 +88,7 @@ export default function Page() {
 
       </form>
 
-      {/* Registro */}
+      {/*  link to register  page*/}
       <div style={{ marginTop: "20px" }}>
         <a href="/register">Don't have an account? Register here!</a>
       </div>
