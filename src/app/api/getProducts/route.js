@@ -1,12 +1,12 @@
 //api/getProducts
 
+//import MongoDB
+import { MongoClient } from 'mongodb';
+
 export async function GET(req, res) {
 
   // show message in terminal when API runs
   console.log("in the api page")
-
-  // import MongoDB
-  const { MongoClient } = require('mongodb');
 
   // connection from .env
   const url = process.env.MONGODB_URI;

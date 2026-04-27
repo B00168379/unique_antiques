@@ -1,5 +1,8 @@
 // api/login
 
+//import MongoDB
+import { MongoClient } from 'mongodb';
+
 export async function GET(req, res) {
 
   // show message in terminal when API runs
@@ -13,8 +16,6 @@ export async function GET(req, res) {
   console.log(email);
   console.log(pass);
 
-  // import MongoDB
-  const { MongoClient } = require('mongodb');
 
   // MongoDB connection from .env
   const url = process.env.MONGODB_URI;

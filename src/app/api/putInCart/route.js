@@ -1,4 +1,8 @@
 //api/putInCart
+
+//import MongoDB
+import { MongoClient } from 'mongodb';
+
 export async function GET(req) {
 
   // show message in terminal when API runs
@@ -10,9 +14,6 @@ export async function GET(req) {
   const pname = searchParams.get('pname');
   const price = searchParams.get('price');
   const username = searchParams.get('username');
-
-  //import DB
-  const { MongoClient } = require('mongodb');
 
   //connection from .env
   const url = process.env.MONGODB_URI;

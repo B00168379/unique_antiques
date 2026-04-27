@@ -1,4 +1,8 @@
 //api/register
+
+//import MongoDB
+import { MongoClient } from 'mongodb';
+
 export async function GET(req, res) {
 
   // show message in terminal when API runs
@@ -17,9 +21,7 @@ export async function GET(req, res) {
   console.log(pass);
   console.log(dob);
   console.log(acctype);
- 
-  // import DB
-  const { MongoClient } = require('mongodb');
+
   
   // using MongoDB Atlas from .env
   const url = process.env.MONGODB_URI;

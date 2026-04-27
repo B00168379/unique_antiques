@@ -1,4 +1,8 @@
 //api/getManagerData
+
+//import MongoDB
+import { MongoClient } from 'mongodb';
+
 export async function GET(req) {
 
   console.log("in manager api page");
@@ -11,9 +15,6 @@ export async function GET(req) {
   if (acctype !== "manager") {
     return Response.json({ error: "Unauthorized" });
   }
-
-  // import MongoDB
-  const { MongoClient } = require('mongodb');
   
   // connection from .env
   const url = process.env.MONGODB_URI;
