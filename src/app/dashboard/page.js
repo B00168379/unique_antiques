@@ -15,13 +15,14 @@ import Header from '../../components/header';
 export default function Page() {
 
   // Function to add items into the shopping cart
-  function putInCart(pname, price) {
+  function putInCart(pname, price, image) {
   const username = localStorage.getItem("email");
 
   // send product details to the cart API
   fetch(
     "/api/putInCart?pname=" + pname +
     "&price=" + price +
+    "&image=" + image +
     "&username=" + username
   );
 }
@@ -84,6 +85,20 @@ export default function Page() {
           {
             data.map((item, i) => (
               <div style={{ padding: '20px' }} key={i}>
+
+                 <img
+                   src={item.image}
+                   alt={item.pname}
+                   style={{
+                          width: "180px",
+                          height: "140px",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                         marginBottom: "10px"
+                          }}
+                 />
+              <br /> 
+              
                 Unique ID: {item._id}
                 <br />
                 {item.pname} - {"\u20AC"}{item.price}
@@ -91,7 +106,7 @@ export default function Page() {
                 
                 {/* button to add product to cart */}
                 <Button
-                  onClick={() => putInCart(item.pname,item.price)}
+                  onClick={() => putInCart(item.pname,item.price,item.image)}
                   variant="outlined"
                 >
                   Add to cart

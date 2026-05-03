@@ -13,6 +13,7 @@ export async function GET(req) {
 
   const pname = searchParams.get('pname');
   const price = searchParams.get('price');
+  const image = searchParams.get('image');
   const username = searchParams.get('username');
 
   //connection from .env
@@ -30,6 +31,7 @@ export async function GET(req) {
   const myobj = {
     pname: pname,
     price: price,
+    image: image,
     username: username
   };
 

@@ -64,6 +64,18 @@ export default function Page() {
           {
             data.map((item, i) => (
               <div style={{ padding: '20px' }} key={i}>
+               <img
+                 src={item.image}
+                 alt={item.pname}
+                 style={{
+                    width: "180px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                   marginBottom: "10px"
+                        }}
+              />
+               <br />
                 Unique ID: {item._id}
                 <br />
                 Product: {item.pname}
