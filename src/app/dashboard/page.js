@@ -104,9 +104,9 @@ export default function Page() {
                 Product: {item.pname} 
                 <br />
                 Price: {"\u20AC"}{item.price}
-                </br/>
+                <br />
 
-                
+
                 {/* button to add product to cart */}
                 <Button
                   onClick={() => putInCart(item.pname,item.price,item.image)}
