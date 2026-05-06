@@ -101,8 +101,11 @@ export default function Page() {
               
                 Unique ID: {item._id}
                 <br />
-                {item.pname} - {"\u20AC"}{item.price}
+                Product: {item.pname} 
                 <br />
+                Price: {"\u20AC"}{item.price}
+                </br/>
+
                 
                 {/* button to add product to cart */}
                 <Button
