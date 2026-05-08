@@ -1,4 +1,4 @@
-// This test checks if date for login are entered correctly
+// This test checks if data for login are entered correctly
 
 function testLogin() {
 

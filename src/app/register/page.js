@@ -13,14 +13,14 @@ export default function Page() {
     // get form data
     const data = new FormData(form);
 
-    const email = data.get('email');
-    const pass = data.get('pass');
-    const dob = data.get('dob');
-    const acctype = data.get('acctype');
+    const email = data.get('email'); //email
+    const pass = data.get('pass'); // password
+    const dob = data.get('dob'); // date of birth
+    const acctype = data.get('acctype'); //account type
 
     // validation
     if (email == '' || pass == '' || dob == '') {
-      alert("Please complete all fields");
+      alert("Please complete all fields"); // alert message if any fiels missing
       return;
     }
     
